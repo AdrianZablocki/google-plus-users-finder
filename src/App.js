@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import * as actions from './store/actions/index';
+
 import './App.css';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.onFetchUsers('adrian')
+  }
   render() {
+    console.log()
     return (
       <div className="App">
         <div className="Container">
@@ -43,7 +51,7 @@ class App extends Component {
               <h2>Adrian Grenier</h2>
               <a href="https://plus.google.com/106749254706410187997">User profile</a>
             </div>
-            
+
           </div>
 
         </div>
@@ -52,4 +60,21 @@ class App extends Component {
   }
 }
 
-export default App;
+
+const mapStateToProps = state => {
+  return {
+    users: state.users.posts,
+    filteredusers: state.users.filteredPosts,
+    error: state.users.error,
+    loading: state.users.loading
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onFetchUsers: (id) => dispatch(actions.fetchUsers(id)),
+    onFilterHandler: (event) => dispatch(actions.inputHandler(event))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
