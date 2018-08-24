@@ -1,9 +1,9 @@
 import React from 'react';
 
-import './User.css';
+import classes from './User.css';
 
 const user = (props) => (
-  <article className="User">
+  <article className={classes.User}>
     <img src={props.imgSrc} alt={props.name} title={props.name} />
     <h2>{props.name}</h2>
     <a href={props.link} target="_blanc">User profile</a>
