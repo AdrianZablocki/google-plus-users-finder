@@ -4,10 +4,9 @@ import * as actionTypes from '../actions/actionTypes';
 const initialstate = {
   users: [],
   filteredUsers: [],
-  value: 'geek soft',
-  limit: 50,
+  value: 'geek',
   loading: false,
-  error: false,
+  error: false
 };
 
 const fetchUsersStart = (state, action) => {
@@ -34,6 +33,12 @@ const inputHandler = (state, action) => {
     value: action.value
   });
 };
+const countHandler = (state, action) => {
+  const countedUsers = state.users.slice(0, action.count);
+  return updateObject(state, {
+    filteredUsers: countedUsers
+  })
+}
 
 const reducer = (state = initialstate, action) => {
   switch(action.type) {
@@ -41,6 +46,7 @@ const reducer = (state = initialstate, action) => {
     case actionTypes.FETCH_USERS_SUCCESS: return fetchUsersSuccess(state, action);
     case actionTypes.FETCH_USERS_FAIL: return fetchUsersFail(state, action);
     case actionTypes.INPUT_HANDLER: return inputHandler(state, action);
+    case actionTypes.COUNT_HANDLER: return countHandler(state, action);
     default: return state
   }
 };

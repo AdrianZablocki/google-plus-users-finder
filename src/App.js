@@ -4,29 +4,35 @@ import { connect } from 'react-redux';
 import User from './components/User/User';
 import SearchBar from './components/SearchBar/SearchBar';
 import Spinner from './components/UI/Spiner/Spinner';
+import CountUsers from './components/CountUsers/CountUsers';
 import * as actions from './store/actions/index';
 
 import './App.css';
 
 class App extends Component {
+  state = {
+    countConfig: [50, 40, 30, 20, 10]
+  }
+
   componentDidMount() {
-    this.props.onFetchUsers(this.props.value, this.props.limit);
+    this.props.onFetchUsers(this.props.value);
   }
 
   submitHandler = (event) => {
     event.preventDefault();
-    this.props.onFetchUsers(this.props.value, this.props.limit);
+    this.props.onFetchUsers(this.props.value);
   }
 
   render() {
-    let users = <p>something went wrong</p>
+    let users = <p>something went wrong</p>;
     if(!this.props.error) {
       users = this.props.filteredUsers.map(user => {
         return <User 
                   key={user.id}
                   imgSrc={user.image.url}
                   name={user.displayName}
-                  link={user.url} />
+                  link={user.url}
+                  id={user.id} />
       })
     }
 
@@ -39,17 +45,7 @@ class App extends Component {
         <SearchBar submited={this.submitHandler} changed={this.props.onInputHandler} />
 
         <div className="Filters">
-
-          <div className="Count">
-            <label>Number of results:</label>
-            <select name="CountResults">
-              <option value="10">10</option>
-              <option value="20">20</option>
-              <option value="30">30</option>
-              <option value="40">40</option>
-              <option value="50">50</option>
-            </select>
-          </div>
+          <CountUsers countOptions={this.state.countConfig} count={this.props.onCountHandler} />
 
           <div className="Sort">
             <label>Sort by:</label>
@@ -77,7 +73,6 @@ const mapStateToProps = state => {
     users: state.users.users,
     filteredUsers: state.users.filteredUsers,
     value: state.users.value,
-    limit: state.users.limit,
     error: state.users.error,
     loading: state.users.loading
   }
@@ -85,8 +80,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchUsers: (id, limit) => dispatch(actions.fetchUsers(id, limit)),
-    onInputHandler: (event) => dispatch(actions.inputHandler(event))
+    onFetchUsers: (id) => dispatch(actions.fetchUsers(id)),
+    onInputHandler: (event) => dispatch(actions.inputHandler(event)),
+    onCountHandler: (event) => dispatch(actions.countHandler(event))
   }
 }
 

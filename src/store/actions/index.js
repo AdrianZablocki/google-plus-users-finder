@@ -1,5 +1,7 @@
 export {
   fetchUsers,
   inputHandler,
-  sortHandler
+  countHandler,
+  //sortHandler,
+  
 } from './fetchUsers'

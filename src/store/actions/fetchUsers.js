@@ -22,11 +22,11 @@ export const fetchUsersFail = (error) => {
   };
 };
 
-export const fetchUsers = (id, limit) => {
+export const fetchUsers = (id) => {
   const apiKey = 'AIzaSyCCKlHxvBE3tfd3-58_UpkUa7WNqVuACOc'
   return dispatch => {
     dispatch(fetchUsersStart());
-    axios.get('https://www.googleapis.com/plus/v1/people?query=' + id + '&maxResults=' + limit + '&key=' + apiKey)
+    axios.get('https://www.googleapis.com/plus/v1/people?query=' + id + '&maxResults=50&key=' + apiKey)
       .then(response => {
         const users = response.data.items;
         let updatedUsers = null;
@@ -53,3 +53,10 @@ export const inputHandler = (event) => {
     value: event.target.value
   };
 };
+
+export const countHandler = (event) => {
+  return {
+    type: actionTypes.COUNT_HANDLER,
+    count: event.target.value,
+  }
+}

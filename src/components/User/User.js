@@ -1,7 +1,7 @@
 import React from 'react';
 
 const user = (props) => (
-  <article className="User">
+  <article className="User" id={props.id}>
     <img src={props.imgSrc} alt={props.name} title={props.name} />
     <h2>{props.name}</h2>
     <a href={props.link} target="_blanc">User profile</a>
