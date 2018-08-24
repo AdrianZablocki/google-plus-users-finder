@@ -31,11 +31,15 @@ export const fetchUsers = (id) => {
         const users = response.data.items;
         let updatedUsers = null;
         if(users.length === undefined) {
-          updatedUsers = users
+          updatedUsers = {
+            ...users,
+            isFavorites: false
+          }
         } else {
           updatedUsers = users.map(user => {
             return {
-              ...user
+              ...user,
+              isFavorites: false
             }
           });
         }
@@ -58,5 +62,20 @@ export const countHandler = (event) => {
   return {
     type: actionTypes.COUNT_HANDLER,
     count: event.target.value,
-  }
-}
+  };
+};
+
+export const sortHandler = (event) => {
+  return{
+    type: actionTypes.SORT_HANDLER,
+    sort: event.target.value
+  };
+};
+
+export const favoritesHandler = (event) => {
+  return {
+    type: actionTypes.ADD_TO_FAVORITES_HANDLER,
+    isChecked: event.target.checked,
+    id: event.target.id
+  };
+};

@@ -2,6 +2,6 @@ export {
   fetchUsers,
   inputHandler,
   countHandler,
-  //sortHandler,
-  
+  sortHandler,
+  favoritesHandler
 } from './fetchUsers'

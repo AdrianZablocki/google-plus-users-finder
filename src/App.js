@@ -5,13 +5,15 @@ import User from './components/User/User';
 import SearchBar from './components/SearchBar/SearchBar';
 import Spinner from './components/UI/Spiner/Spinner';
 import CountUsers from './components/CountUsers/CountUsers';
+import SortUsers from './components/SortUsers/SortUsers';
 import * as actions from './store/actions/index';
 
 import './App.css';
 
 class App extends Component {
   state = {
-    countConfig: [50, 40, 30, 20, 10]
+    countConfig: [50, 40, 30, 20, 10],
+    sortConfig: ['All', 'Name', 'Favorites']
   }
 
   componentDidMount() {
@@ -32,7 +34,8 @@ class App extends Component {
                   imgSrc={user.image.url}
                   name={user.displayName}
                   link={user.url}
-                  id={user.id} />
+                  id={user.id}
+                  changed={this.props.onAddToFavorites} />
       })
     }
 
@@ -43,25 +46,13 @@ class App extends Component {
     return (
       <div className="App">
         <SearchBar submited={this.submitHandler} changed={this.props.onInputHandler} />
-
         <div className="Filters">
           <CountUsers countOptions={this.state.countConfig} count={this.props.onCountHandler} />
-
-          <div className="Sort">
-            <label>Sort by:</label>
-            <select name="SelectBy">
-              <option value="Name">Name</option>
-              <option value="LastName">Last Name</option>
-              <option value="Favorites">Favorites</option>
-            </select>
-          </div>
-
+          <SortUsers sortOptions={this.state.sortConfig} sort={this.props.onSortHandler}/>
         </div>
-
         <div className="List">
           {users}
         </div>
-
       </div>
     );
   }
@@ -82,7 +73,9 @@ const mapDispatchToProps = dispatch => {
   return {
     onFetchUsers: (id) => dispatch(actions.fetchUsers(id)),
     onInputHandler: (event) => dispatch(actions.inputHandler(event)),
-    onCountHandler: (event) => dispatch(actions.countHandler(event))
+    onCountHandler: (event) => dispatch(actions.countHandler(event)),
+    onSortHandler: (event) => dispatch(actions.sortHandler(event)),
+    onAddToFavorites: (event) => dispatch(actions.favoritesHandler(event))
   }
 }
 
