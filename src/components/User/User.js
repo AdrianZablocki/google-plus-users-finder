@@ -13,7 +13,9 @@ const user = (props) => (
       <label className={classes.UserLabel}>favorites</label>
       <input 
         className={classes.UserCheckbox} 
-        type="checkbox" id={props.id} 
+        type="checkbox" 
+        checked={props.isChecked}
+        id={props.id} 
         onChange={props.changed} 
         onClick={props.test} 
       />        

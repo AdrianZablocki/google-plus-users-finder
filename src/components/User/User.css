@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: center;
   margin: 0;
-  padding: 10px 10px 10px 0;
+  padding: 10px 0;
   border-top: 1px solid #CCC;
   position: relative;
   font-size: 0.825rem;
@@ -51,7 +51,7 @@
 .UserFavorites {
   position: absolute;
   bottom: 10px;
-  right: 8px;
+  right: 0;
 }
 
 .UserLabel {

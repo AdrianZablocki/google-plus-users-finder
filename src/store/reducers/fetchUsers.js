@@ -15,8 +15,17 @@ const fetchUsersStart = (state, action) => {
 };
 
 const fetchUsersSuccess = (state, action) => {
+  action.users.forEach(user1 => {
+    state.favoritesUsers.forEach(user2 => {
+      if(user1.id === user2.id && user2.isFavorites === true) {
+        user1.isFavorites = true;
+      }
+    });
+  });
+
   return updateObject(state, {
     loading: false,
+    error: false,
     users: action.users,
     filteredUsers: action.filteredUsers
   });
@@ -83,6 +92,7 @@ const favoritesHandler = (state, action) => {
 
 const sortHandler = (state, action) => {
   let sortedUsers;
+
   switch(action.sort) {
     case 'All':
       sortedUsers = state.users;

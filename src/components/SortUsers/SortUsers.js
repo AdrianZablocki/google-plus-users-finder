@@ -7,13 +7,13 @@ const sortUsers = (props) => {
   let options = props.sortOptions;
   
   options = options.map((option) => {
-    return <SelectOption key={'count' + option}value={option}/>
+    return <SelectOption key={'count' + option} value={option} />
   });
 
   return(
     <div className={classes.Sort}>
       <label className={classes.SortLabel}>Sort by:</label>
-      <select className={classes.SortSelect} onChange={props.sort}>
+      <select className={classes.SortSelect} onChange={props.sort} disabled={props.disabled}>
         {options}
       </select>
     </div>  

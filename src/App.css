@@ -6,8 +6,21 @@
 .Filters {
   display: flex;
   justify-content: flex-start;
+  flex: 1 1 33%;
   border: 1px solid #CCC;
   border-top: none;
+}
+
+.Favorites {
+  width: 25%;
+  font-size: 0.725rem;
+  text-align: left;
+  padding: 5px;
+  background: transparent;
+  border: none;
+  border-right: 1px solid #CCC;
+  cursor: pointer;
+  outline: none;
 }
 
 @media(min-width: 450px) {
@@ -19,6 +32,11 @@
 @media(min-width: 600px) {
   .App {
     max-width: 550px;
+  }
+  .Favorites {
+    flex: 1 1 33%;
+    font-size: 0.825rem;
+    padding: 10px;
   }
 }
 

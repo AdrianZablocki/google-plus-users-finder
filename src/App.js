@@ -13,7 +13,10 @@ import classes from './App.css';
 class App extends Component {
   state = {
     countConfig: [50, 40, 30, 20, 10],
-    sortConfig: ['All', 'Name', 'Favorites']
+    sortConfig: ['All', 'Name', 'Favorites'],
+    showFavorites: false,
+    toggleBtnName: 'Favorites',
+    disable: false,
   }
 
   componentDidMount() {
@@ -25,19 +28,26 @@ class App extends Component {
     this.props.onFetchUsers(this.props.value);
   }
 
+  showFaworitesHandler = () => {
+    this.setState(prevState => ({
+      showFavorites: !prevState.showFavorites,
+      disable: !prevState.disable
+    }));
+    (this.state.showFavorites) ? this.setState({toggleBtnName: 'Favorites'}) : this.setState({toggleBtnName: 'All Users'});
+  }
+
   render() {
-    console.log(this.props.favorites);
     let users = <p>something went wrong</p>;
     if(!this.props.error) {
       users = this.props.filteredUsers.map(user => {
         return <User 
-                  key={user.id}
-                  imgSrc={user.image.url}
-                  name={user.displayName}
-                  link={user.url}
-                  id={user.id}
-                  changed={this.props.onAddToFavorites}
-                   />
+                key={user.id}
+                imgSrc={user.image.url}
+                name={user.displayName}
+                link={user.url}
+                id={user.id}
+                changed={this.props.onAddToFavorites}
+                isChecked={user.isFavorites ? true : null} />
       })
     }
 
@@ -45,12 +55,35 @@ class App extends Component {
       users = <Spinner/>
     }
 
+    if(this.state.showFavorites) {
+      users = this.props.favorites.map(user => {
+        return <User 
+                key={user.id}
+                imgSrc={user.image.url}
+                name={user.displayName}
+                link={user.url}
+                id={user.id}
+                changed={this.props.onAddToFavorites}
+                isChecked={user.isFavorites ? true : null} />
+      })
+    }
+
     return (
       <div className={classes.App}>
         <SearchBar submited={this.submitHandler} changed={this.props.onInputHandler} />
         <div className={classes.Filters}>
-          <CountUsers countOptions={this.state.countConfig} count={this.props.onCountHandler} />
-          <SortUsers sortOptions={this.state.sortConfig} sort={this.props.onSortHandler}/>
+          <button className={classes.Favorites} onClick={this.showFaworitesHandler}>{this.state.toggleBtnName}</button>
+          <CountUsers 
+            countOptions={this.state.countConfig} 
+            count={this.props.onCountHandler} 
+            disabled={this.state.disable}
+          />
+          <SortUsers 
+            select={true}
+            sortOptions={this.state.sortConfig} 
+            sort={this.props.onSortHandler}
+            disabled={this.state.disable}
+          />
         </div>
         <div className="List">
           {users}

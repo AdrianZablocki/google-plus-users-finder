@@ -1,16 +1,29 @@
 .Sort {
-  flex: 1 1 50%;
-  padding: 10px;
+  width: 45%;
+  padding: 5px;
   border-left: 1px solid #CCC;
 }
 
 .SortLabel,
 .SortSelect {
-  font-size: 0.825rem;
+  font-size: 0.725rem;
 }
 
 .SortSelect {
   border: none;
   background: transparent;
+  cursor: pointer;
   outline: none;
+}
+
+
+@media(min-width: 600px) {
+  .SortLabel,
+  .SortSelect {
+    font-size: 0.825rem;
+  }
+  .Sort {
+    flex: 1 1 33%;
+    padding: 10px;
+  }
 }

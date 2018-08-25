@@ -7,13 +7,13 @@ const countUsers = (props) => {
   let options = props.countOptions;
   
   options = options.map((option) => {
-    return <SelectOption key={'count' + option}value={option}/>
+    return <SelectOption key={'count' + option} value={option}/>
   });
 
   return(
     <div className={classes.Count}>
       <label className={classes.CountLabel}>Results:</label>
-      <select className={classes.CountSelect} onChange={props.count}>
+      <select className={classes.CountSelect} onChange={props.count} disabled={props.disabled}>
         {options}
       </select>
     </div>  
