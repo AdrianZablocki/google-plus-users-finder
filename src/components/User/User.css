@@ -1,8 +1,63 @@
 .User {
-  max-width: 600px;
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 10px auto;
+  margin: 0;
+  padding: 10px 10px 10px 0;
   border-top: 1px solid #CCC;
+  position: relative;
+  font-size: 0.825rem;
+}
+
+.User:first-child {
+  margin-top: 20px; 
+}
+
+.User:last-child {
+  margin-bottom: 50px; 
+  border-bottom: 1px solid #CCC;
+}
+
+.UserImg {
+  flex: 1 1 20%
+}
+
+.UserImg  img {
+  width: 50px;
+  height: auto;
+}
+
+.UserName {
+  flex: 1 1 50%;
+  align-self: flex-start;
+  font-weight: 500;
+  font-size: 0.825rem;
+  margin-top: 0;
+  padding: 5px;
+}
+
+.UserProfile {
+  flex: 1 1 30%;
+  align-self: flex-start;
+  text-align: center;
+  text-decoration: none;
+  padding: 5px;
+  border: 1px solid #CCC;
+  cursor: pointer;
+}
+
+.UserFavorites {
+  position: absolute;
+  bottom: 10px;
+  right: 8px;
+}
+
+.UserLabel {
+  margin-right: 10px;
+}
+
+.UserCheckbox {
+  margin: 0;
 }

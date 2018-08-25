@@ -8,7 +8,7 @@ import CountUsers from './components/CountUsers/CountUsers';
 import SortUsers from './components/SortUsers/SortUsers';
 import * as actions from './store/actions/index';
 
-import './App.css';
+import classes from './App.css';
 
 class App extends Component {
   state = {
@@ -26,6 +26,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props.favorites);
     let users = <p>something went wrong</p>;
     if(!this.props.error) {
       users = this.props.filteredUsers.map(user => {
@@ -35,7 +36,8 @@ class App extends Component {
                   name={user.displayName}
                   link={user.url}
                   id={user.id}
-                  changed={this.props.onAddToFavorites} />
+                  changed={this.props.onAddToFavorites}
+                   />
       })
     }
 
@@ -44,9 +46,9 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
+      <div className={classes.App}>
         <SearchBar submited={this.submitHandler} changed={this.props.onInputHandler} />
-        <div className="Filters">
+        <div className={classes.Filters}>
           <CountUsers countOptions={this.state.countConfig} count={this.props.onCountHandler} />
           <SortUsers sortOptions={this.state.sortConfig} sort={this.props.onSortHandler}/>
         </div>
@@ -58,11 +60,11 @@ class App extends Component {
   }
 }
 
-
 const mapStateToProps = state => {
   return {
     users: state.users.users,
     filteredUsers: state.users.filteredUsers,
+    favorites: state.users.favoritesUsers,
     value: state.users.value,
     error: state.users.error,
     loading: state.users.loading
@@ -75,7 +77,7 @@ const mapDispatchToProps = dispatch => {
     onInputHandler: (event) => dispatch(actions.inputHandler(event)),
     onCountHandler: (event) => dispatch(actions.countHandler(event)),
     onSortHandler: (event) => dispatch(actions.sortHandler(event)),
-    onAddToFavorites: (event) => dispatch(actions.favoritesHandler(event))
+    onAddToFavorites: (event) => dispatch(actions.favoritesHandler(event)),
   }
 }
 

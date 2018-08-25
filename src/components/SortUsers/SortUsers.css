@@ -1,0 +1,16 @@
+.Sort {
+  flex: 1 1 50%;
+  padding: 10px;
+  border-left: 1px solid #CCC;
+}
+
+.SortLabel,
+.SortSelect {
+  font-size: 0.825rem;
+}
+
+.SortSelect {
+  border: none;
+  background: transparent;
+  outline: none;
+}

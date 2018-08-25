@@ -4,11 +4,20 @@ import classes from './User.css';
 
 const user = (props) => (
   <article className={classes.User}>
-    <img src={props.imgSrc} alt={props.name} title={props.name} />
-    <h2>{props.name}</h2>
-    <a href={props.link} target="_blanc">User profile</a>
-    <label>ulubione</label>
-    <input type="checkbox" id={props.id} onChange={props.changed}/>        
+    <div className={classes.UserImg}>
+      <img src={props.imgSrc} alt={props.name} title={props.name} />
+    </div>
+    <h2 className={classes.UserName}>{props.name}</h2>
+    <a className={classes.UserProfile} href={props.link} target="_blanc">User profile</a>
+    <div className={classes.UserFavorites}>
+      <label className={classes.UserLabel}>favorites</label>
+      <input 
+        className={classes.UserCheckbox} 
+        type="checkbox" id={props.id} 
+        onChange={props.changed} 
+        onClick={props.test} 
+      />        
+    </div>
   </article>
 );
 

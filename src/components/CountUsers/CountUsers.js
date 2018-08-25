@@ -1,6 +1,7 @@
 import React from 'react';
 
 import SelectOption from '../UI/SelectOption/SelectOption';
+import classes from './CountUsers.css';
 
 const countUsers = (props) => {
   let options = props.countOptions;
@@ -10,9 +11,9 @@ const countUsers = (props) => {
   });
 
   return(
-    <div className="Count">
-      <label>Number of results:</label>
-      <select onChange={props.count}>
+    <div className={classes.Count}>
+      <label className={classes.CountLabel}>Results:</label>
+      <select className={classes.CountSelect} onChange={props.count}>
         {options}
       </select>
     </div>  

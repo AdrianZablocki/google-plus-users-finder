@@ -1,6 +1,7 @@
 import React from 'react';
 
 import SelectOption from '../UI/SelectOption/SelectOption';
+import classes from './SortUsers.css';
 
 const sortUsers = (props) => {
   let options = props.sortOptions;
@@ -10,9 +11,9 @@ const sortUsers = (props) => {
   });
 
   return(
-    <div className="Sort">
-      <label>Sort by:</label>
-      <select onChange={props.sort}>
+    <div className={classes.Sort}>
+      <label className={classes.SortLabel}>Sort by:</label>
+      <select className={classes.SortSelect} onChange={props.sort}>
         {options}
       </select>
     </div>  

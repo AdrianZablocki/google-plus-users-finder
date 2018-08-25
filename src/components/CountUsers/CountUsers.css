@@ -1,0 +1,16 @@
+.Count {
+  padding: 10px;
+  flex: 1 1 50%;
+}
+
+.CountLabel,
+.CountSelect {
+  font-size: 0.825rem;
+}
+
+.CountSelect {
+  border: none;
+  background: transparent;
+  width: 50px;
+  outline: none;
+}

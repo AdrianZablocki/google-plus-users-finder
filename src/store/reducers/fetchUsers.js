@@ -4,6 +4,7 @@ import * as actionTypes from '../actions/actionTypes';
 const initialstate = {
   users: [],
   filteredUsers: [],
+  favoritesUsers: [],
   value: 'geek',
   loading: false,
   error: false
@@ -42,7 +43,8 @@ const countHandler = (state, action) => {
 };
 
 const favoritesHandler = (state, action) => {
-  let updatedUsers = state.users.map(user => {
+  let updatedUsers, favoritesUsers, newfavoritesUsers;
+  updatedUsers = state.users.map(user => {
     if(user.id === action.id) {
       return updateObject(user, {
         ...user,
@@ -54,10 +56,30 @@ const favoritesHandler = (state, action) => {
     });
 
   });
-  return updateObject(state, {
-    users: updatedUsers
+
+  favoritesUsers = updatedUsers.filter((user) => {
+    return user.isFavorites;
   });
-}
+  newfavoritesUsers = [...state.favoritesUsers, ...favoritesUsers]
+  
+  newfavoritesUsers = newfavoritesUsers.reduce((unique, o) => {
+    if(!unique.some(obj => obj.id === o.id)) {
+      unique.push(o);
+    }
+    return unique;
+  },[]);
+
+  if(!action.isChecked) {
+    newfavoritesUsers.splice(newfavoritesUsers.findIndex(function(i){
+      return i.id === action.id;
+    }), 1);
+  }
+
+  return updateObject(state, {
+    users: updatedUsers,
+    favoritesUsers: newfavoritesUsers
+  });
+};
 
 const sortHandler = (state, action) => {
   let sortedUsers;
@@ -81,8 +103,8 @@ const sortHandler = (state, action) => {
   }
   return updateObject(state, {
     filteredUsers: sortedUsers
-  })
-}
+  });
+};
 
 const reducer = (state = initialstate, action) => {
   switch(action.type) {
@@ -92,7 +114,7 @@ const reducer = (state = initialstate, action) => {
     case actionTypes.INPUT_HANDLER: return inputHandler(state, action);
     case actionTypes.COUNT_HANDLER: return countHandler(state, action);
     case actionTypes.SORT_HANDLER: return sortHandler(state, action);
-    case actionTypes.ADD_TO_FAVORITES_HANDLER: return favoritesHandler(state, action);
+    case actionTypes.FAVORITES_HANDLER: return favoritesHandler(state, action);
     default: return state
   }
 };

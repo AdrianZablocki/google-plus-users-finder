@@ -74,7 +74,7 @@ export const sortHandler = (event) => {
 
 export const favoritesHandler = (event) => {
   return {
-    type: actionTypes.ADD_TO_FAVORITES_HANDLER,
+    type: actionTypes.FAVORITES_HANDLER,
     isChecked: event.target.checked,
     id: event.target.id
   };
