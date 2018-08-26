@@ -7,8 +7,6 @@
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  border: 1px solid #CCC;
-  border-top: none;
 }
 
 .Favorites {
@@ -19,8 +17,9 @@
   padding: 5px;
   background: transparent;
   border: none;
-  /* border-right: 1px solid #CCC;
-  border-bottom: 1px solid #CCC; */
+  border: 1px solid #CCC;
+  border-radius: 5px;
+  margin: 5px 0 ;
   cursor: pointer;
   outline: none;
 }

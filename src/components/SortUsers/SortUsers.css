@@ -2,6 +2,9 @@
   box-sizing: border-box;
   flex: 1 1 33%;
   padding: 5px;
+  border: 1px solid #CCC;
+  border-radius: 5px;
+  margin: 5px 0;
 }
 
 .SortLabel,
