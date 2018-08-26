@@ -1,16 +1,18 @@
-.SearchForm {
+.SearchBar {
   width: 100%;
   display: flex;
   margin-top: 50px;
+  border: 1px solid #CCC;
+  box-sizing: border-box;
 }
 .SearchInput,
 .SearchSubmit {
   flex: 1 1 80%;
-  font-size: 0.725rem;
+  font-size: 1rem;
   padding: 6.5px 5px;
   box-sizing: border-box;
   outline: none;
-  border: 1px solid #CCC;
+  border: none;
 }
 
 .SearchSubmit {
@@ -20,14 +22,13 @@
   flex: 1 1 20%;
   box-sizing: border-box;
   background:none;
-  border-left: none;
+  border: none;
   cursor: pointer;
 }
 
 @media(min-width: 600px) {
   .SearchInput,
   .SearchSubmit {
-    font-size: 0.825rem;
     padding: 10px;
   }
 }

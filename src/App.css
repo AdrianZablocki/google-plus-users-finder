@@ -1,24 +1,26 @@
 .App {
-  width: 90%;
+  width: 95%;
   margin: 0 auto;
 }
 
 .Filters {
   display: flex;
   justify-content: flex-start;
-  flex: 1 1 33%;
+  flex-wrap: wrap;
   border: 1px solid #CCC;
   border-top: none;
 }
 
 .Favorites {
-  width: 25%;
-  font-size: 0.725rem;
+  flex: 1 1 33%;
+  font-size: 1rem;
   text-align: left;
+  box-sizing: border-box;
   padding: 5px;
   background: transparent;
   border: none;
-  border-right: 1px solid #CCC;
+  /* border-right: 1px solid #CCC;
+  border-bottom: 1px solid #CCC; */
   cursor: pointer;
   outline: none;
 }
@@ -34,8 +36,6 @@
     max-width: 550px;
   }
   .Favorites {
-    flex: 1 1 33%;
-    font-size: 0.825rem;
     padding: 10px;
   }
 }
